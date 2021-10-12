@@ -14,20 +14,34 @@ class EmployeePayrollData {
     //getter and setter
     get name() { return this._name; }
     set name(name) {
-        this._name = name;
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if(nameRegex.test(name))
+            this._name = name;
+        else throw 'Name is Incorrect';
     }
     get salary() { return this._salary; }
     set salary(salary) {
-        this._salary = salary;
+        let salaryRegex = RegExp('^[1-9][0-9]*$');
+        if(salaryRegex.test(salary))
+            this._salary = salary;
+        else throw 'Salary is Incorrect';
     }
     get gender() { return this._gender; }
     set gender(gender) {
-        this._gender = gender;
+        let genderRegex = RegExp('(^M$)|(^F$)');
+        if(genderRegex.test(gender))
+            this._gender = gender;
+        else throw 'gender must be either M or F';
     }
     get startDate() { return this._startDate; }
     set startDate(startDate) {
-        this._startDate = startDate; 
+        var priorDate = new Date();
+        priorDate.setDate(priorDate.getDate() - 30)
+        if(new Date() >= startDate && startDate >= priorDate) 
+            this._startDate = startDate;
+        else throw 'Invalid date it can not be a future date and should be within 30 days of joining'; 
     }
+
     get departments() { return this._departments}
     set departments(departments){
         this._departments = departments;
@@ -42,7 +56,7 @@ class EmployeePayrollData {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const employeeDate = this.startDate == undefined ? "undefined" :
         this.startDate.toLocaleDateString("en-us", options);
-        return "name="+ this.name +", salary="+ this.salary+", gender="+ this.gender+", start date="+ employeeDate+", department="+this.departments+", notes="+this.notes;
+        return "name="+ this.name +", salary="+ this.salary+", gender="+ this.gender+", start date="+ employeeDate+", department="+this.departments+", notes="+this.notes+"\n";
     }
 }
 
@@ -66,8 +80,10 @@ function save(){
     const year = document.querySelector('#year');
     const date = new Date(day.value+"/"+month.value+"/"+year.value);
     const notes = document.querySelector('#notes'); 
-
-    employeeArray.push(new EmployeePayrollData(name.value,salary.value,gender,date,departments,notes.value));
-
-    alert("Saved successfully: "+employeeArray);
+    try{
+        employeeArray.push(new EmployeePayrollData(name.value,salary.value,gender,date,departments,notes.value));
+        alert("Saved successfully: "+employeeArray);
+    }catch(e){
+        alert("error:"+e);
+    }
 }
