@@ -2,19 +2,14 @@ let employeeArray = [];
 
 class EmployeePayrollData {
 
-    //constructor
-    constructor(...params) {
-        this.name = params[0];
-        this.salary = params[1];
-        this.gender = params[2];
-        this.startDate = params[3];
-        this.departments = params[4];
-        this.notes = params[5];
-    }
     //getter and setter
+    get id() { return this._id; }
+    set id(id){
+        this._id = id;
+    }
     get name() { return this._name; }
     set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
         if(nameRegex.test(name))
             this._name = name;
         else throw 'Name is Incorrect';
@@ -25,6 +20,10 @@ class EmployeePayrollData {
         if(salaryRegex.test(salary))
             this._salary = salary;
         else throw 'Salary is Incorrect';
+    }
+    get profilePic(){return this._profilePic;}
+    set profilePic(profilePic){
+        this._profilePic = profilePic;
     }
     get gender() { return this._gender; }
     set gender(gender) {
@@ -39,7 +38,7 @@ class EmployeePayrollData {
         priorDate.setDate(priorDate.getDate() - 30)
         if(new Date() >= startDate && startDate >= priorDate) 
             this._startDate = startDate;
-        else throw 'Invalid date it can not be a future date and should be within 30 days of joining'; 
+        else throw 'Invalid date!! It can not be a future date and should be within 30 days of joining'; 
     }
 
     get departments() { return this._departments}
@@ -56,34 +55,7 @@ class EmployeePayrollData {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const employeeDate = this.startDate == undefined ? "undefined" :
         this.startDate.toLocaleDateString("en-us", options);
-        return "name="+ this.name +", salary="+ this.salary+", gender="+ this.gender+", start date="+ employeeDate+", department="+this.departments+", notes="+this.notes+"\n";
+        return "id= "+this.id+"name="+ this.name +", salary="+ this.salary+", gender="+ this.gender+", start date="+ employeeDate+", department="+this.departments+", notes="+this.notes+"\n";
     }
 }
 
-function save(){
-    const name = document.querySelector("#name");
-    let departments = new Array();
-    let markedCheckbox = document.getElementsByName('department');  
-    for (var checkbox of markedCheckbox) {  
-      if (checkbox.checked)  
-        departments.push(checkbox.value);  
-    } 
-    let markedRadioButton = document.getElementsByName('gender');
-    let gender;
-    for (var radiobutton of markedRadioButton) {  
-        if (radiobutton.checked)  
-          gender = radiobutton.value;  
-    }
-    const salary = document.getElementById("salary");
-    const day = document.querySelector('#day');
-    const month = document.querySelector('#month');
-    const year = document.querySelector('#year');
-    const date = new Date(day.value+"/"+month.value+"/"+year.value);
-    const notes = document.querySelector('#notes'); 
-    try{
-        employeeArray.push(new EmployeePayrollData(name.value,salary.value,gender,date,departments,notes.value));
-        alert("Saved successfully: "+employeeArray);
-    }catch(e){
-        alert("error:"+e);
-    }
-}
