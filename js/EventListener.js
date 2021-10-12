@@ -12,7 +12,22 @@ window.addEventListener('DOMContentLoaded',(event) => {
         } catch(e){
             textError.textContent = e;
         }
-    })
+    });
+
+    const startDateError = document.querySelector('.date-error');
+    const day  = document.querySelector('#day');
+    const month  = document.querySelector('#month');
+    const year  = document.querySelector('#year');
+    const startDate = document.querySelector('.select-div');
+    startDate.addEventListener('input', function(){
+        const date = new Date(day.value+"/"+month.value+"/"+year.value);
+        try{
+            (new EmployeePayrollData()).startDate = date;
+            startDateError.textContent = "";
+        } catch(e) {
+        startDateError.textContent = e;
+      }
+    });
 
     const salary = document.querySelector('#salary');
     const output  = document.querySelector('.salary-output');
@@ -20,6 +35,8 @@ window.addEventListener('DOMContentLoaded',(event) => {
     salary.addEventListener('input', function(){
     output.textContent = salary.value;
     });
+
+ 
 });
 
 
