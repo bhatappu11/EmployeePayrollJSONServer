@@ -72,7 +72,7 @@
                 <div class="row-content">
                     <label class="label text" for="salary">Choose your salary:</label>
                     <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
-                    <output class="salary-output text" for="salary">400000</output>
+                    <output class="salary-output" for="salary">400000</output>
                 </div>
                 <div class="row-content">
                     <label class="label text" for="startDate">Start Date</label>
@@ -138,12 +138,20 @@
                 </div>
                 <div class="buttonParent">
                     <a href="./home.html" class="resetButton button cancelButton">Cancel</a>
-                    <div class="sbmit-reset">
+                    <div class="submit-reset">
                         <button type="submit" class="button submitButton" id="submitButton">Submit</button>
-                        <button type="reset" class="resetButton button">Reset</button>
+                        <button type="reset" class="resetButton button" id="resetButton">Reset</button>
                     </div>
                 </div>
             </form>
         </div>
+        <script>
+            const salary = document.querySelector('#salary');
+            const output  = document.querySelector('.salary-output');
+            output.textContent = salary.value;
+            salary.addEventListener('input', function(){
+                output.textContent = salary.value;
+            });
+        </script>
     </body>
 </html>
