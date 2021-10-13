@@ -54,6 +54,7 @@ body {
     border: 1px solid #f5f5f5;
     border-radius: 8px;
     opacity: 1;
+    margin: 50px;
 }
 
 .form-head {
@@ -68,7 +69,7 @@ body {
 .row-content {
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     align-items: center;
     border: 0px solid green;
 }
@@ -219,6 +220,9 @@ error-output {
         flex-flow:wrap;
     }
     .profile-radio-content{
+        flex-flow: wrap;
+    }
+    .row-content{
         flex-flow: wrap;
     }
     .submit-reset {
