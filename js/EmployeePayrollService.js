@@ -33,9 +33,9 @@ const createEmployeePayroll = () => {
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.notes = getInputValueById('#notes');
     const dateError = document.querySelector('.date-error');
-    let date = getInputValueById('#day')+" "+getInputValueById('#month')+" "+getInputValueById('#year');
+    let date = getInputValueById('#day')+"-"+getInputValueById('#month')+"-"+getInputValueById('#year');
     try {
-        employeePayrollData.startDate = new Date(date);
+        employeePayrollData.startDate = new Date(Date.parse(date));
     } catch(e){
         dateError.textContent = e;
         throw e;
@@ -62,7 +62,9 @@ const resetForm = () => {
     unsetSelectedValues('[name=profile]');
     unsetSelectedValues('[name=gender]');
     unsetSelectedValues('[name=department]');
-    setValue('#salary','');
+    setValue('#salary','400000');
+    const output  = document.querySelector('.salary-output');
+    output.textContent = salary.value;
     setValue('#notes','');
     setValue('#day','1');
     setValue('#month','January');
