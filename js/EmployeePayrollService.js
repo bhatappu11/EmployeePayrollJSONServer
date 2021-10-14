@@ -13,7 +13,6 @@ function createAndUpdateStorage(employeePayrollData){
     }else{
         employeePayrollList = [employeePayrollData]
     }
-    alert(employeePayrollList.toString());
     localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList))
 }
 
@@ -33,9 +32,9 @@ const createEmployeePayroll = () => {
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.notes = getInputValueById('#notes');
     const dateError = document.querySelector('.date-error');
-    let date = getInputValueById('#day')+"-"+getInputValueById('#month')+"-"+getInputValueById('#year');
+    let date = getInputValueById('#year')+"-"+getInputValueById('#month')+"-"+getInputValueById('#day');
     try {
-        employeePayrollData.startDate = new Date(Date.parse(date));
+        employeePayrollData.startDate =new Date(date);
     } catch(e){
         dateError.textContent = e;
         throw e;
@@ -67,7 +66,7 @@ const resetForm = () => {
     output.textContent = salary.value;
     setValue('#notes','');
     setValue('#day','1');
-    setValue('#month','January');
+    setValue('#month','1');
     setValue('#year','2020');
 }
 
