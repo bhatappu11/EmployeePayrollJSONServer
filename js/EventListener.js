@@ -15,20 +15,22 @@ window.addEventListener('DOMContentLoaded',(event) => {
     });
 
     const startDateError = document.querySelector('.date-error');
-    const day  = document.querySelector('#day');
+    const date  = document.querySelector('#day');
     const month  = document.querySelector('#month');
     const year  = document.querySelector('#year');
-    const startDate = document.querySelector('.select-div');
-    startDate.addEventListener('input', function(){
-        const date = new Date(day.value+"/"+month.value+"/"+year.value);
+    date.addEventListener("change",validateDate);
+    month.addEventListener("change",validateDate);
+    year.addEventListener("change",validateDate);
+
+    function validateDate() {
+        let startDate = Date.parse(year.value + "-" + month.value + "-" + date.value);
         try{
-            (new EmployeePayrollData()).startDate = date;
+            (new EmployeePayrollData()).startDate = startDate;
             startDateError.textContent = "";
         } catch(e) {
-        startDateError.textContent = e;
-      }
-    });
-
+            startDateError.textContent = e;
+        }
+    }
     const salary = document.querySelector('#salary');
     const output  = document.querySelector('.salary-output');
     output.textContent = salary.value;
