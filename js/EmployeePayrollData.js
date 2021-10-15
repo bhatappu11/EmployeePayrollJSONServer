@@ -32,10 +32,12 @@ class EmployeePayrollData {
     }
     get startDate() { return this._startDate; }
     set startDate(startDate) {
+        if(startDate >= new Date())
+            throw 'Start Date can not be a future date';
         let days = Math.abs(startDate - new Date())/(1000*60*60*24);
-        if(startDate <= new Date() &&  days < 30)
-            this._startDate = startDate;
-        else throw 'Invalid date!! It can not be a future date and should be within 30 days of joining'; 
+        if(days > 30)
+            throw 'Start Date is beyond 30 days';
+        this._startDate = startDate; 
     }
 
     get departments() { return this._departments}
