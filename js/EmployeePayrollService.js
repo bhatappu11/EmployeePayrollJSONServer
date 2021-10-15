@@ -44,14 +44,29 @@ window.addEventListener('DOMContentLoaded',(event) => {
  
 });
 
-const save = () => {
+const save = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     try{
-        let employeePayrollData = createEmployeePayroll();
-        createAndUpdateStorage(employeePayrollData);
+        setEmployeePayrollObject();
+        createAndUpdateStorage();
+        resetForm();
+        window.location.replace(site_properties.home_page);
     }catch(e){
         return;
     }
 }
+const setEmployeePayrollObject = () => {
+    employeePayrollObj._name = getInputValueById('#name');
+    employeePayrollObj._profilePic = getSelectedValues('[name=profile').pop();
+    employeePayrollObj._gender = getSelectedValues('[name=gender]').pop();
+    employeePayrollObj._departments = getSelectedValues('[name=department]');
+    employeePayrollObj._salary = getInputValueById('#salary');
+    employeePayrollObj._notes = getInputValueById('#notes');
+    let date = getInputValueById('#year')+"-"+getInputValueById('#month')+"-"+getInputValueById('#day');
+    employeePayrollObj._startDate = date;
+}
+
 function createAndUpdateStorage(employeePayrollData){
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
     if(employeePayrollList != undefined){
