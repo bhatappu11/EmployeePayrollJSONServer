@@ -31,6 +31,7 @@ const createEmployeePayroll = () => {
     employeePayrollData.departments = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.notes = getInputValueById('#notes');
+    employeePayrollData.id = new Date().getTime();
     const dateError = document.querySelector('.date-error');
     let date = getInputValueById('#year')+"-"+getInputValueById('#month')+"-"+getInputValueById('#day');
     try {
