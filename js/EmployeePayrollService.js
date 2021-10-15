@@ -3,21 +3,19 @@ let employeePayrollObj = {};
 
 window.addEventListener('DOMContentLoaded',(event) => {
     const name = document.querySelector('#name');
-    const textError = document.querySelector('.text-error');
     name.addEventListener('input',function(){
         if(name.value.length == 0){
-            textError.textContent = "";
+            setTextValue('.text-error',"");
             return;
         }
         try{
             (new EmployeePayrollData()).name = name.value;
-            textError.textContent = "";
+            setTextValue('.text-error',"");
         } catch(e){
-            textError.textContent = e;
+            setTextValue('.text-error',e);
         }
     });
 
-    const startDateError = document.querySelector('.date-error');
     const date  = document.querySelector('#day');
     const month  = document.querySelector('#month');
     const year  = document.querySelector('#year');
@@ -29,9 +27,9 @@ window.addEventListener('DOMContentLoaded',(event) => {
         let startDate = Date.parse(year.value + "-" + month.value + "-" + date.value);
         try{
             (new EmployeePayrollData()).startDate = startDate;
-            startDateError.textContent = "";
+            setTextValue('.date-error',"");
         } catch(e) {
-            startDateError.textContent = e;
+            setTextValue('.date-error',e);
         }
     }
     const salary = document.querySelector('#salary');
@@ -152,7 +150,6 @@ const setForm = () => {
     setTextValue('.salary-output',employeePayrollObj._salary);
     setValue('#notes',employeePayrollObj._notes);
     let date = stringifyDate(employeePayrollObj._startDate).split(" ");
-    alert(date)
     setValue('#day',date[0]);
     setValue('#month',date[1]);
     setValue('#year',date[2]);
