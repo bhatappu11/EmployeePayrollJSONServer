@@ -5,13 +5,6 @@ const stringifyDate = (date) => {
     return newDate;
 }
 
-const update = (node) => {
-    let employeePayrollData = employeePayrollList.find(empData => empData._id == node.id);
-    if(!employeePayrollData) return;
-    localStorage.setItem('editEmp',JSON.stringify(employeePayrollData))
-    window.location.replace(site_properties.add_emp_payroll_page);
-}
-
 const checkName = (name) => {
     let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
     if(!nameRegex.test(name)) throw 'Name is Incorrect!';
