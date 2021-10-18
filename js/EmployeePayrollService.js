@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
             return;
         }
         try{
-            (new EmployeePayrollData()).name = name.value;
+            checkName(name.value);
             setTextValue('.text-error',"");
         } catch(e){
             setTextValue('.text-error',e);
@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
     function validateDate() {
         let startDate = Date.parse(year.value + "-" + month.value + "-" + date.value);
         try{
-            (new EmployeePayrollData()).startDate = startDate;
+            checkStartDate(startDate);
             setTextValue('.date-error',"");
         } catch(e) {
             setTextValue('.date-error',e);
