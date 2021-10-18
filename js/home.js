@@ -27,9 +27,9 @@ const createInnerHtml = () => {
             <td>${employeePayrollData._salary}</td>
             <td>${stringifyDate(employeePayrollData._startDate)}</td>
             <td>
-                <img id="${employeePayrollData._id}" onclick="remove(this)" alt="delete"
+                <img id="${employeePayrollData.id}" onclick="remove(this)" alt="delete"
                     src="../assets/icons/delete-black-18dp.svg">
-                <img id="${employeePayrollData._id}" alt="edit" onclick="update(this)"
+                <img id="${employeePayrollData.id}" alt="edit" onclick="update(this)"
                     src="../assets//icons/create-black-18dp.svg">
             </td>
         </tr>
@@ -49,10 +49,17 @@ const remove = (node) => {
     let employeePayrollData = employeePayrollList.find(empData => empData._id == node.id);
     if(!employeePayrollData) return;
     const index = employeePayrollList
-                    .map(empData => empData._id)
-                    .indexOf(employeePayrollData._id);
+                    .map(empData => empData.id)
+                    .indexOf(employeePayrollData.id);
     employeePayrollList.splice(index, 1);
     localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
     document.querySelector(".emp-count").textContent = employeePayrollList.length;
     createInnerHtml();
+}
+
+const update = (node) => {
+    let employeePayrollData = employeePayrollList.find(empData => empData.id == node.id);
+    if(!employeePayrollData) return;
+    localStorage.setItem('editEmp',JSON.stringify(employeePayrollData))
+    window.location.replace(site_properties.add_emp_payroll_page);
 }
