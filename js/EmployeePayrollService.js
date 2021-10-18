@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
     salary.addEventListener('input', function(){
     output.textContent = salary.value;
     });
-
+    //document.querySelector('#cancelButton').href = site_properties.home_page;
     checkForUpdate();
 
  
@@ -59,6 +59,7 @@ const save = (event) => {
   }
   
   const setEmployeePayrollObject = () => {
+    if(!isUpdate ) employeePayrollObj.id = createNewEmployeeId();
     employeePayrollObj._name = getInputValueById('#name');
     employeePayrollObj._profilePic = getSelectedValues('[name=profile]').pop();
     employeePayrollObj._gender = getSelectedValues('[name=gender]').pop();
@@ -73,23 +74,23 @@ const save = (event) => {
   const createAndUpdateStorage = () => {
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
     if(employeePayrollList){
-      let empPayrollData = employeePayrollList.find(empData => empData._id == employeePayrollObj._id);
+      let empPayrollData = employeePayrollList.find(empData => empData.id == employeePayrollObj.id);
       if(!empPayrollData) {
-        employeePayrollList.push(createEmployeePayrollData());
+        employeePayrollList.push(employeePayrollObj);
       }
       else {
-        const index = employeePayrollList.map(empData => empData._id)
-                                         .indexOf(empPayrollData._id);
-        employeePayrollList.splice(index, 1, createEmployeePayrollData(empPayrollData._id));
+        const index = employeePayrollList.map(empData => empData.id)
+                                         .indexOf(empPayrollData.id);
+        employeePayrollList.splice(index, 1, createEmployeePayrollData(employeePayrollObj));
       }
     }
     else{
-      employeePayrollList = [createEmployeePayrollData()];
+      employeePayrollList = [employeePayrollObj];
     }
     localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
   }
   
-  const createEmployeePayrollData = (id) => {
+  /*const createEmployeePayrollData = (id) => {
     let employeePayrollData = new EmployeePayrollData();
     if (!id) employeePayrollData.id = createNewEmployeeId();
     else employeePayrollData.id = id;
@@ -120,7 +121,7 @@ const save = (event) => {
         throw e;
     }
     alert(employeePayrollData.toString());
-  }
+  }*/
   
   const createNewEmployeeId = () => {
     let empID = localStorage.getItem("EmployeeId");
