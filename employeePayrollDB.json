@@ -1,67 +1,68 @@
 {
   "EmployeePayrollDB": [
     {
-      "id": 1,
-      "_name": "Mark",
-      "_gender": "male",
+      "id": "17",
+      "_name": "Jim",
+      "_profilePic": "../assets/profile-images/Ellipse -3.png",
+      "_gender": "M",
       "_departments": [
         "Sales",
         "Finance"
       ],
-      "_salary": "500000",
-      "_startDate": "11 Oct 2021",
-      "_notes": "All In One",
-      "_profilePic": "../assets/profile-images/Ellipse -3.png"
+      "_salary": "440400",
+      "_notes": "tets",
+      "_startDate": "20 Sept 2021"
     },
     {
-      "id": 2,
-      "_name": "Bill Gates",
-      "_gender": "male",
-      "_departments": [
-        "HR"
-      ],
-      "_salary": "600000",
-      "_startDate": "13 Oct 2021",
-      "_notes": "Terrific Engineer",
-      "_profilePic": "../assets/profile-images/Ellipse -1.png"
-    },
-    {
-      "id": "12",
-      "_name": "Timothee",
-      "_profilePic": "../assets/profile-images/Ellipse -8.png",
-      "_gender": "M",
+      "id": "18",
+      "_name": "Pam",
+      "_profilePic": "../assets/profile-images/Ellipse -7.png",
+      "_gender": "F",
       "_departments": [
         "Sales",
         "Others"
       ],
-      "_salary": "425000",
-      "_notes": "sample",
-      "_startDate": "11 Oct 2021"
+      "_salary": "447800",
+      "_notes": "test 2",
+      "_startDate": "10 Oct 2021"
     },
     {
-      "id": "13",
-      "_name": "Zendaya",
-      "_profilePic": "../assets/profile-images/Ellipse 1.png",
-      "_gender": "F",
+      "id": "19",
+      "_name": "Patrick",
+      "_profilePic": "../assets/profile-images/Ellipse -3.png",
+      "_gender": "M",
+      "_departments": [
+        "HR"
+      ],
+      "_salary": "440400",
+      "_notes": "sample",
+      "_startDate": "26 Sept 2021"
+    },
+    {
+      "id": "20",
+      "_name": "Joseph",
+      "_profilePic": "../assets/profile-images/Ellipse -8.png",
+      "_gender": "M",
       "_departments": [
         "Finance",
         "Others"
       ],
-      "_salary": "432500",
-      "_notes": "Test sample",
-      "_startDate": "22 Sept 2021"
+      "_salary": "441600",
+      "_notes": "test test",
+      "_startDate": "30 Sept 2021"
     },
     {
-      "_name": "Amarpa Shashanka Keerthi Kumar",
-      "_gender": "female",
+      "id": "21",
+      "_name": "Bella",
+      "_profilePic": "../assets/profile-images/Ellipse 1.png",
+      "_gender": "F",
       "_departments": [
+        "HR",
         "Sales"
       ],
-      "_salary": "400000",
-      "_startDate": "2 Oct 2021",
-      "_notes": "",
-      "_profilePic": "../assets/profile-images/Ellipse -1.png",
-      "id": 3
+      "_salary": "440800",
+      "_notes": "Very good",
+      "_startDate": "30 Sept 2021"
     }
   ]
 }
